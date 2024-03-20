@@ -1,28 +1,23 @@
-import { koeiromapFreeV1 } from "@/features/koeiromap/koeiromap";
-
-import type { NextApiRequest, NextApiResponse } from "next";
+import type {NextApiRequest, NextApiResponse} from "next";
+import {aigc_tts} from "@/features/aigc/tts";
 
 type Data = {
-  audio: string;
+    audio: string;
 };
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
+    req: NextApiRequest,
+    res: NextApiResponse<Data>
 ) {
-  const message = req.body.message;
-  const speakerX = req.body.speakerX;
-  const speakerY = req.body.speakerY;
-  const style = req.body.style;
-  const apiKey = req.body.apiKey;
+    const message = req.body.message;
+    const style = req.body.style;
+    const apiKey = req.body.apiKey;
 
-  const voice = await koeiromapFreeV1(
-    message,
-    speakerX,
-    speakerY,
-    style,
-    apiKey
-  );
+    const voice = await aigc_tts(
+        apiKey,
+        message,
+        style
+    );
 
-  res.status(200).json(voice);
+    res.status(200).json(voice);
 }

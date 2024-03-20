@@ -37,28 +37,18 @@ export async function koeiromapFreeV1(
   apiKey: string
 ) {
   // Request body
-  const body = {
-    text: message,
-    speaker_x: speakerX,
-    speaker_y: speakerY,
-    style: style,
-    output_format: "mp3",
-  };
 
+  const fd = new URLSearchParams();
+  fd.append("text",message)
   const koeiroRes = await fetch(
-    "https://api.rinna.co.jp/koeiromap/v1.0/infer",
+    "http://10.0.0.182:84/v1/tts/tts/text?token="+apiKey,
     {
       method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-        "Ocp-Apim-Subscription-Key": apiKey,
-      },
+      body: fd,
     }
   );
 
   const data = (await koeiroRes.json()) as any;
 
-  return { audio: data.audio };
+  return { audio: data.echo };
 }

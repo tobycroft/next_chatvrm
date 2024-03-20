@@ -36,7 +36,7 @@ export async function getChatResponseStream(
     console.log("message", messages[messages.length - 1].content)
     const data = new URLSearchParams();
     data.append("text", messages[messages.length - 1].content)
-    const res = await fetch("http://10.0.0.182:84/v1/aigc/gemini/text?token=" + apiKey, {
+    const res = await fetch("http://10.0.0.182:84/v1/aigc/gemini/test?token=" + apiKey, {
         method: "POST",
         body: data,
     })
@@ -59,7 +59,7 @@ export async function getChatResponseStream(
                     // .filter((val) => !!val && val.trim() !== "[DONE]");
 
                     for (const chunk of chunks) {
-                        console.log(chunk)
+                        // console.log(chunk)
                         controller.enqueue(chunk)
                         //sleep for 1000ms
                         // await new Promise((resolve) => setTimeout(resolve, 1000));
