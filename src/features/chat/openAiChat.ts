@@ -36,7 +36,7 @@ export async function getChatResponseStream(
     console.log("message", messages[messages.length - 1].content)
     const data = new URLSearchParams();
     data.append("text", messages[messages.length - 1].content)
-    const res = await fetch("http://10.0.0.182:84/v1/aigc/gemini/test?token=" + apiKey, {
+    const res = await fetch("http://10.0.0.182:84/v1/aigc/gemini/text?token=" + apiKey, {
         method: "POST",
         body: data,
     })

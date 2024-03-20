@@ -149,7 +149,7 @@ export default function Home() {
                         //     continue;
                         // }
 
-                        const aiText = `happy ${value}`;
+                        const aiText = `${value}`;
                         const aiTalks = textsToScreenplay([aiText], koeiroParam);
                         aiTextLog += aiText;
 
