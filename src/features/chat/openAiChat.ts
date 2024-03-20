@@ -59,14 +59,8 @@ export async function getChatResponseStream(
                     // .filter((val) => !!val && val.trim() !== "[DONE]");
 
                     for (const chunk of chunks) {
-                    //     // const json = JSON.parse(chunk);
-                    //     // console.log(chunk)
-                    //     // const messagePiece = json.choices[0].delta.content;
-                    //     // if (!!messagePiece) {
-                    //     //     controller.enqueue(messagePiece);
-                    //     // }
                         console.log(chunk)
-                        controller.enqueue(chunks)
+                        controller.enqueue("[{neutral}]{"+chunks+"}")
                         //sleep for 1000ms
                         await new Promise((resolve) => setTimeout(resolve, 1000));
                     }
