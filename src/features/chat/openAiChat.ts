@@ -56,7 +56,7 @@ export async function getChatResponseStream(
                     const data = decoder.decode(value);
                     console.log("data",data)
                     const chunks = JSON.parse(data)["echo"]
-                        .split("\r\n")
+                        .split("。")
                         // .filter((val) => !!val && val.trim() !== "[DONE]");
                     for (const chunk of chunks) {
                         // const json = JSON.parse(chunk);
