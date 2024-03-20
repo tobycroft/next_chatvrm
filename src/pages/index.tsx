@@ -7,7 +7,6 @@ import {MessageInputContainer} from "@/components/messageInputContainer";
 import {SYSTEM_PROMPT} from "@/features/constants/systemPromptConstants";
 import {DEFAULT_PARAM, KoeiroParam} from "@/features/constants/koeiroParam";
 import {getChatResponseStream} from "@/features/chat/openAiChat";
-import {Introduction} from "@/components/introduction";
 import {Menu} from "@/components/menu";
 import {Meta} from "@/components/meta";
 
@@ -182,12 +181,6 @@ export default function Home() {
     return (
         <div className={"font-M_PLUS_2"}>
             <Meta/>
-            <Introduction
-                openAiKey={openAiKey}
-                koeiroMapKey={koeiromapKey}
-                onChangeAiKey={setOpenAiKey}
-                onChangeKoeiromapKey={setKoeiromapKey}
-            />
             <VrmViewer/>
             <MessageInputContainer
                 isChatProcessing={chatProcessing}
