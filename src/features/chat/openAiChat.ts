@@ -33,7 +33,7 @@ export async function getChatResponseStream(
     if (!apiKey) {
         throw new Error("Invalid API Key");
     }
-    console.log("message",messages[messages.length - 1].content)
+    console.log("message", messages[messages.length - 1].content)
     const data = new URLSearchParams();
     data.append("text", messages[messages.length - 1].content)
     const res = await fetch("http://10.0.0.182:84/v1/aigc/gemini/text?token=" + apiKey, {
@@ -54,19 +54,21 @@ export async function getChatResponseStream(
                     const {done, value} = await reader.read();
                     if (done) break;
                     const data = decoder.decode(value);
-                    console.log("data",data)
-                    const chunks = JSON.parse(data)["echo"]
-                        .split("。")
-                        // .filter((val) => !!val && val.trim() !== "[DONE]");
+                    const chunks = JSON.parse(data)["echo"].split("\n")
+                    console.log("echo:", JSON.parse(data)["echo"])
+                    // .filter((val) => !!val && val.trim() !== "[DONE]");
+
                     for (const chunk of chunks) {
-                        // const json = JSON.parse(chunk);
-                        // console.log(chunk)
-                        // const messagePiece = json.choices[0].delta.content;
-                        // if (!!messagePiece) {
-                        //     controller.enqueue(messagePiece);
-                        // }
+                    //     // const json = JSON.parse(chunk);
+                    //     // console.log(chunk)
+                    //     // const messagePiece = json.choices[0].delta.content;
+                    //     // if (!!messagePiece) {
+                    //     //     controller.enqueue(messagePiece);
+                    //     // }
                         console.log(chunk)
-                        controller.enqueue(chunk)
+                        controller.enqueue(chunks)
+                        //sleep for 1000ms
+                        await new Promise((resolve) => setTimeout(resolve, 1000));
                     }
                 }
             } catch (error) {
