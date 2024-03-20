@@ -60,9 +60,9 @@ export async function getChatResponseStream(
 
                     for (const chunk of chunks) {
                         console.log(chunk)
-                        controller.enqueue("[{neutral}]{"+chunks+"}")
+                        controller.enqueue(chunk)
                         //sleep for 1000ms
-                        await new Promise((resolve) => setTimeout(resolve, 1000));
+                        // await new Promise((resolve) => setTimeout(resolve, 1000));
                     }
                 }
             } catch (error) {
