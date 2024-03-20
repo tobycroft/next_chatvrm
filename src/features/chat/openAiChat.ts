@@ -33,7 +33,7 @@ export async function getChatResponseStream(
     if (!apiKey) {
         throw new Error("Invalid API Key");
     }
-    console.log(messages[messages.length - 1].content)
+    console.log("message",messages[messages.length - 1].content)
     const data = new URLSearchParams();
     data.append("text", messages[messages.length - 1].content)
     const res = await fetch("http://10.0.0.182:84/v1/aigc/gemini/text?token=" + apiKey, {
@@ -50,14 +50,13 @@ export async function getChatResponseStream(
         async start(controller: ReadableStreamDefaultController) {
             const decoder = new TextDecoder("utf-8");
             try {
-                controller.enqueue(decoder);
                 while (true) {
                     const {done, value} = await reader.read();
                     if (done) break;
                     const data = decoder.decode(value);
-                    // console.log(data)
+                    console.log("data",data)
                     const chunks = JSON.parse(data)["echo"]
-                        .split("\\r\\n")
+                        .split("\r\n")
                         // .filter((val) => !!val && val.trim() !== "[DONE]");
                     for (const chunk of chunks) {
                         // const json = JSON.parse(chunk);
@@ -66,7 +65,7 @@ export async function getChatResponseStream(
                         // if (!!messagePiece) {
                         //     controller.enqueue(messagePiece);
                         // }
-
+                        console.log(chunk)
                         controller.enqueue(chunk)
                     }
                 }
