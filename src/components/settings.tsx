@@ -59,31 +59,32 @@ export const Settings = ({
                             onChange={onChangeAiKey}
                         />
                     </div>
-                    <div className="my-40">
-                        <div className="my-16 typography-20 font-bold">
-                            更换模型
-                        </div>
-                        <div className="my-8">
-                            <TextButton onClick={onClickOpenVrmFile}>选择VRM文件く</TextButton>
-                        </div>
-                    </div>
-                    <div className="my-40">
-                        <div className="my-8">
-                            <div className="my-16 typography-20 font-bold">
-                                系统提示
-                            </div>
-                            <TextButton onClick={onClickResetSystemPrompt}>
-                                キャラクター設定リセット
-                            </TextButton>
-                        </div>
-
-                        <textarea
-                            value={systemPrompt}
-                            onChange={onChangeSystemPrompt}
-                            className="px-16 py-8  bg-surface1 hover:bg-surface1-hover h-168 rounded-8 w-full"
-                        ></textarea>
-                    </div>
                     {/*<div className="my-40">*/}
+                    {/*    <div className="my-16 typography-20 font-bold">*/}
+                    {/*        更换模型*/}
+                    {/*    </div>*/}
+                    {/*    <div className="my-8">*/}
+                    {/*        <TextButton onClick={onClickOpenVrmFile}>选择VRM文件く</TextButton>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="my-40">*/}
+                    {/*    <div className="my-8">*/}
+                    {/*        <div className="my-16 typography-20 font-bold">*/}
+                    {/*            系统提示*/}
+                    {/*        </div>*/}
+                    {/*        <TextButton onClick={onClickResetSystemPrompt}>*/}
+                    {/*            キャラクター設定リセット*/}
+                    {/*        </TextButton>*/}
+                    {/*    </div>*/}
+
+                    {/*    <textarea*/}
+                    {/*        value={systemPrompt}*/}
+                    {/*        onChange={onChangeSystemPrompt}*/}
+                    {/*        className="px-16 py-8  bg-surface1 hover:bg-surface1-hover h-168 rounded-8 w-full"*/}
+                    {/*    ></textarea>*/}
+                    {/*</div>*/}
+                    {/*<div className="my-40">*/}
+
                     {/*    <div className="my-16 typography-20 font-bold">声の調整</div>*/}
                     {/*    <div>*/}
                     {/*        KoemotionのKoeiromap APIを使用しています。詳しくは*/}
