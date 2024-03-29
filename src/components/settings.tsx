@@ -2,10 +2,11 @@ import React from "react";
 import {IconButton} from "./iconButton";
 import {TextButton} from "./textButton";
 import {Message} from "@/features/messages/messages";
-import {KoeiroParam, PRESET_A, PRESET_B, PRESET_C, PRESET_D,} from "@/features/constants/koeiroParam";
-import {Link} from "./link";
+import {KoeiroParam,} from "@/features/constants/koeiroParam";
 
 type Props = {
+    username: string;
+    password: string;
     openAiKey: string;
     systemPrompt: string;
     chatLog: Message[];
@@ -22,6 +23,8 @@ type Props = {
     onChangeKoeiromapKey: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export const Settings = ({
+                             username,
+                             password,
                              openAiKey,
                              chatLog,
                              systemPrompt,
@@ -48,16 +51,37 @@ export const Settings = ({
             </div>
             <div className="max-h-full overflow-auto">
                 <div className="text-text1 max-w-3xl mx-auto px-24 py-64 ">
-                    <div className="my-24 typography-32 font-bold">设定</div>
+                    {/*<div className="my-24 typography-32 font-bold">设定</div>*/}
+                    {/*<div className="my-24">*/}
+                    {/*    <div className="my-16 typography-20 font-bold">AIGC-API</div>*/}
+                    {/*    <input*/}
+                    {/*        className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"*/}
+                    {/*        type="text"*/}
+                    {/*        placeholder="这里填写project"*/}
+                    {/*        value={openAiKey}*/}
+                    {/*        onChange={onChangeAiKey}*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    <div className="my-24 typography-32">登录</div>
                     <div className="my-24">
-                        <div className="my-16 typography-20 font-bold">AIGC-API</div>
+                        <div className="my-16 typography-20">username：</div>
                         <input
                             className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
                             type="text"
-                            placeholder="这里填写project"
-                            value={openAiKey}
+                            placeholder="这里填写用户名"
+                            value={username}
                             onChange={onChangeAiKey}
                         />
+
+                        <div className="my-16 typography-20">password：</div>
+                        <input
+                            className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
+                            type="text"
+                            placeholder="这里填写密码"
+                            value={password}
+                            onChange={onChangeAiKey}
+                        />
+
                     </div>
                     {/*<div className="my-40">*/}
                     {/*    <div className="my-16 typography-20 font-bold">*/}
