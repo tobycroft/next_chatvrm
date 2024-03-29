@@ -8,6 +8,8 @@ import {ViewerContext} from "@/features/vrmViewer/viewerContext";
 import {AssistantText} from "./assistantText";
 
 type Props = {
+    username: string;
+    password: string;
     openAiKey: string;
     systemPrompt: string;
     chatLog: Message[];
@@ -23,6 +25,8 @@ type Props = {
     onChangeKoeiromapKey: (key: string) => void;
 };
 export const Menu = ({
+                         username,
+                         password,
                          openAiKey,
                          systemPrompt,
                          chatLog,
@@ -143,6 +147,8 @@ export const Menu = ({
                     onClickResetChatLog={handleClickResetChatLog}
                     onClickResetSystemPrompt={handleClickResetSystemPrompt}
                     onChangeKoeiromapKey={handleChangeKoeiromapKey}
+                    username={username}
+                    password={password}
                 />
             )}
             {!showChatLog && assistantMessage && (

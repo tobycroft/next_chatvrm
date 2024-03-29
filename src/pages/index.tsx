@@ -15,6 +15,8 @@ export default function Home() {
 
     const [systemPrompt, setSystemPrompt] = useState(SYSTEM_PROMPT);
     const [openAiKey, setOpenAiKey] = useState("");
+    const [username,] = useState("");
+    const [password,] = useState("");
     const [koeiromapKey, setKoeiromapKey] = useState("local");
     const [koeiroParam, setKoeiroParam] = useState<KoeiroParam>(DEFAULT_PARAM);
     const [chatProcessing, setChatProcessing] = useState(false);
@@ -117,12 +119,12 @@ export default function Home() {
                 while (true) {
                     const {done, value} = await reader.read();
                     if (done) break
-                    if(value.length<1) continue
+                    if (value.length < 1) continue
                     receivedMessage += value;
 
                     // 返答内容のタグ部分の検出
                     // const tagMatch = receivedMessage.match(/^\[(.*?)\]/);
-                    console.log("receivedMessage",receivedMessage)
+                    console.log("receivedMessage", receivedMessage)
                     // if (tagMatch && tagMatch[0]) {
                     //     tag = tagMatch[0];
                     //     receivedMessage = receivedMessage.slice(tag.length);
@@ -134,30 +136,30 @@ export default function Home() {
                     // );
                     // if (sentenceMatch && sentenceMatch[0]) {
                     //     const sentence = sentenceMatch[0];
-                        sentences.push(receivedMessage.trim());
-                        // receivedMessage = receivedMessage
-                        //     .slice(sentence.length)
-                        //     .trimStart();
-                        //
-                        // // 発話不要/不可能な文字列だった場合はスキップ
-                        // if (
-                        //     !sentence.replace(
-                        //         /^[\s\[\(\{「［（【『〈《〔｛«‹〘〚〛〙›»〕》〉』】）］」\}\)\]]+$/g,
-                        //         ""
-                        //     )
-                        // ) {
-                        //     continue;
-                        // }
+                    sentences.push(receivedMessage.trim());
+                    // receivedMessage = receivedMessage
+                    //     .slice(sentence.length)
+                    //     .trimStart();
+                    //
+                    // // 発話不要/不可能な文字列だった場合はスキップ
+                    // if (
+                    //     !sentence.replace(
+                    //         /^[\s\[\(\{「［（【『〈《〔｛«‹〘〚〛〙›»〕》〉』】）］」\}\)\]]+$/g,
+                    //         ""
+                    //     )
+                    // ) {
+                    //     continue;
+                    // }
 
-                        const aiText = `${value}`;
-                        const aiTalks = textsToScreenplay([aiText], koeiroParam);
-                        aiTextLog += aiText;
+                    const aiText = `${value}`;
+                    const aiTalks = textsToScreenplay([aiText], koeiroParam);
+                    aiTextLog += aiText;
 
-                        // 文ごとに音声を生成 & 再生、返答を表示
-                        const currentAssistantMessage = sentences.join(" ");
-                        handleSpeakAi(aiTalks[0], () => {
-                            setAssistantMessage(currentAssistantMessage);
-                        });
+                    // 文ごとに音声を生成 & 再生、返答を表示
+                    const currentAssistantMessage = sentences.join(" ");
+                    handleSpeakAi(aiTalks[0], () => {
+                        setAssistantMessage(currentAssistantMessage);
+                    });
                     // }
                 }
             } catch (e) {
@@ -188,6 +190,8 @@ export default function Home() {
                 onChatProcessStart={handleSendChat}
             />
             <Menu
+                username={username}
+                password={password}
                 openAiKey={openAiKey}
                 systemPrompt={systemPrompt}
                 chatLog={chatLog}
